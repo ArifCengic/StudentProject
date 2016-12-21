@@ -26,13 +26,17 @@ namespace StudentDemo
 				Console.WriteLine(st.toString());
 				sum += st.calculatePayment();
 			}
+			Func<int, bool> f = n => n < 5;
 
 			double dsum = 0;
+			students.Sort((Student x, Student y) => x.getAverage().CompareTo(y.getAverage()) );
+
 			students.ForEach(st => { Console.WriteLine(st.toString()); dsum += dsum + st.getAverage(); });
 			students.TrueForAll(x => x.ime.Length == 3);
 
+
 			var fs = students.Find(x  => x.ime == "Ana");
-			Console.WriteLine(fs.toString());
+			//Console.WriteLine(fs.toString());
 			if (a == 1) Console.WriteLine("Equal value");
 			else Console.WriteLine("Not Equal value");
 			Console.WriteLine("Total " + sum + "\n" + "--- Done! ---");
