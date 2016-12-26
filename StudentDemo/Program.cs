@@ -9,36 +9,59 @@ namespace StudentDemo
 		{
 			List<Student> students = new List<Student> {
 				new Student { ime = "Ana", ocjene = new int[] {2,5,0,7,5,4,3,6}, dob = new DateTime(1985,11,3) },
-				new Student() { ime = "Jim", ocjene = new int[] {8,5,3,7,5,4,9,6}, dob = new DateTime(1995,12,3) }
-			};
+				new Student() { ime = "Jim", ocjene = new int[] {8,5,3,7,5,4,9,0}, dob = new DateTime(1995,12,3) },
+                new Stipendista() { ime = "Sam", ocjene = new int[] {8,5,8,7,5,4,9,0}, dob = new DateTime(1985,1,3) }
+            };
 
-			double a = students[0].d * 0.1;
-			Student s = new Stipendista();
-			s.ime = "Amy";
-			s.dob = students[0].dob;
-			s.ocjene = students[0].ocjene;
-			s.ocjene[2] = 10;
+            Stipendista.minProsjek = 5.2;
+            /*****
+            for(int i=0; i < 5; i++)
+            {
+                Console.WriteLine("Do you want to add new student");
+                string response = Console.ReadLine();
+                if (response.StartsWith("y"))
+                {
+                    Student s = null;
+                    Console.WriteLine("Tip Studenta S-stipendista, V-vandredni, R-regularni");
+                    string tip = Console.ReadLine();
+                    switch(tip[0])
+                    {
+                        case 'R':
+                            s = new Student();
+                            break;
+                        case 'S':
+                            s = new Stipendista();
+                            break;
+                        case 'V':
+                            s = new Vandredni();
+                            break;
+                        default:
+                            break;
+                    }
+                    if(s != null) students.Add(s);
+                }
+                else
+                {
+                    Console.WriteLine("Unos zavrsen");
 
-			students.Add(s);
+                    break;
+                }
+		****/
 			decimal sum = 0;
+            int countStipendista = 0;
 			foreach (Student st in students)
 			{
-				Console.WriteLine(st.toString());
+                if (st is Stipendista) countStipendista++;
+            
+                Console.WriteLine(st.toString());
 				sum += st.calculatePayment();
 			}
-			Func<int, bool> f = n => n < 5;
-
-			double dsum = 0;
-			students.Sort((Student x, Student y) => x.getAverage().CompareTo(y.getAverage()) );
-
-			students.ForEach(st => { Console.WriteLine(st.toString()); dsum += dsum + st.getAverage(); });
-			students.TrueForAll(x => x.ime.Length == 3);
+			
 
 
-			var fs = students.Find(x  => x.ime == "Ana");
+			//var fs = students.Find(x  => x.ime == "Ana");
 			//Console.WriteLine(fs.toString());
-			if (a == 1) Console.WriteLine("Equal value");
-			else Console.WriteLine("Not Equal value");
+			
 			Console.WriteLine("Total " + sum + "\n" + "--- Done! ---");
 			Console.ReadLine();
 

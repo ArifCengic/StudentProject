@@ -30,7 +30,7 @@ namespace StudentDemo
 
 		virtual public decimal calculatePayment()
 		{
-			return 2500;
+			return 2600;
 		}
 
 		public string toString(){
@@ -55,10 +55,13 @@ namespace StudentDemo
 	}
 
 	public class Stipendista : Student {
-	override public decimal calculatePayment()
+       public static double minProsjek;
+        public static decimal Payment;
+
+        override public decimal calculatePayment()
 		{
-			if (getAverage() >= 4.5) return 100;
-			else return 2500;
+			if (getAverage() >= minProsjek) return Payment;
+			else return base.calculatePayment();
 		}
 	}
 
